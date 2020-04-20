@@ -124,6 +124,9 @@ class ChessBoard extends StatefulWidget {
   /// The color type of the board
   final BoardType boardType;
 
+  /// Not allow to play with own pieces
+  final PieceColor onlyAllowToPlayWith;
+
   ChessBoard({
     this.size = 200.0,
     this.whiteSideTowardsUser = true,
@@ -132,7 +135,8 @@ class ChessBoard extends StatefulWidget {
     @required this.onCheck,
     @required this.onDraw,
     this.chessBoardController,
-    this.enableUserMoves = true,
+    this.onlyAllowToPlayWith,
+    this.enableUserMoves = false,
     this.boardType = BoardType.brown,
   });
 
@@ -153,6 +157,7 @@ class _ChessBoardState extends State<ChessBoard> {
         widget.whiteSideTowardsUser,
         widget.chessBoardController,
         widget.enableUserMoves,
+        widget.onlyAllowToPlayWith
       ),
       child: Container(
         height: widget.size,
@@ -218,7 +223,7 @@ class _ChessBoardState extends State<ChessBoard> {
         );
       case BoardType.orange:
         return Image.asset(
-          "images/orange_board.png",
+          "images/chess_board.png",
           package: 'flutter_chess_board',
           fit: BoxFit.cover,
         );

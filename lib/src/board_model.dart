@@ -4,7 +4,7 @@ import 'package:flutter_chess_board/src/chess_board_controller.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:chess/chess.dart' as chess;
 
-typedef Null MoveCallback(String moveNotation);
+typedef Null MoveCallback(String from, String to);
 typedef Null CheckMateCallback(PieceColor color);
 typedef Null CheckCallback(PieceColor color);
 
@@ -36,6 +36,9 @@ class BoardModel extends Model {
   /// Creates a logical game
   chess.Chess game = chess.Chess();
 
+  /// Only play with own pieces
+  PieceColor onlyAllowToPlayWith;
+
   /// Refreshes board
   void refreshBoard() {
     if (game.in_checkmate) {
@@ -58,7 +61,8 @@ class BoardModel extends Model {
       this.onDraw,
       this.whiteSideTowardsUser,
       this.chessBoardController,
-      this.enableUserMoves) {
+      this.enableUserMoves,
+      this.onlyAllowToPlayWith) {
     chessBoardController?.game = game;
     chessBoardController?.refreshBoard = refreshBoard;
   }

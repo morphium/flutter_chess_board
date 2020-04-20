@@ -32,8 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ChessBoard(
-              onMove: (move) {
-                print(move);
+              onMove: (from, to) {
+                print(from + "," + to);
               },
               onCheck: (color) {
                 print(color);
